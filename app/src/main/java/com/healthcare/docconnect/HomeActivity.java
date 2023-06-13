@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity{
         appointmentsCard = findViewById(R.id.appointments_card);
 
 
-        //Functionalizing views
+        //Functionalizing views by adding intents
     contactsCard.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity{
 
     settingsCard.setOnClickListener(new View.OnClickListener(){
         @Override
-        public void onClick(){
+        public void onClick(View v){
             Intent intent = new Intent(getActivity(), SettingsActivity.class);
             startActivity(intent);
         }
@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity{
 
     registerDoctorCard.setOnClickListener(new View.OnClickListener(){
         @Override
-        public void onClick(){
+        public void onClick(View v){
             Intent intent = new Intent(getActivity(), DoctorRegistration.class);
             startActivity(intent);
         }
@@ -62,7 +62,7 @@ public class HomeActivity extends AppCompatActivity{
 
     appointmentsCard.setOnClickListener(new View.OnClickListener(){
         @Override
-        public void onClick(){
+        public void onClick(View v){
             Intent intent = new Intent(getActivity(), AppointmentsActivity.class);
             startActivity(intent);
         }
