@@ -19,23 +19,203 @@
             app:menu="@menu/home_top_app_bar" />
     
 </com.google.android.material.appbar.AppBarLayout>
+<!-- Doctors tip of the day card -->
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_margin="8dp"
+    android:layout_height="300dp"
+    android:elevation="8dp">
 
-<com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+    <TextView
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:elevation="6dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:tabMode="fixed"
-        android:tabGravity="fill" />
-
-<androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/tab_layout" 
-        
+        android:text="Doctor's tip of the day"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:gravity="center"
         />
+
+
+</androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+<!-- contacts card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:id="@+id/contacts_card"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:elevation="8dp">
+
+            <LinearLayout
+              android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+            >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contacts_text"
+        android:layout_margin="2dp"
+        android:text="Contacts"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:drawableLeft="@drawable/ic_person"
+        android:drawablePadding="4dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contacts_text"
+        android:padding="8dp"
+        android:text="Get the list of doctors with various expertise around you based on your locality. "
+        />
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+<!-- Messages card  -->
+<androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:id="@+id/messages_card"
+            android:layout_weight="1"
+            android:layout_margin="8dp"
+            android:elevation="8dp">
+            <LinearLayout
+            android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/messages_text"
+        android:layout_margin="2dp"
+        android:text="Messages"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:drawableLeft="@drawable/ic_chat"
+        android:drawablePadding="4dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/messages_text"
+        android:padding="8dp"
+        android:text="End to end encrypted conversations between you and your doctor."
+        />
+        </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
+
+</LinearLayout>
+<!-- Settings card -->
+
+    
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:id="@+id/settings_card"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+
+        android:elevation="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_settings"
+                android:drawablePadding="8dp"
+                android:text="Settings"
+                android:textSize="20sp"
+                android:padding="4dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:text="Change your location and general information to get the best of our services." />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Register as a doctor -->
+
+    <androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_margin="8dp"
+    android:id="@+id/doctor_registration_card"
+    android:layout_height="wrap_content"
+    android:elevation="8dp">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+<TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Register as a doctor"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:padding="4dp"
+        android:drawableLeft="@drawable/ic_medic"
+        android:drawablePadding="8dp"
+        />
+
+<TextView
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent" 
+    android:text="Add additional information to register as a doctor."
+    android:padding="6dp"/>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
+
+   <androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_margin="8dp"
+    android:id="@+id/appointments_card"
+    android:layout_height="wrap_content"
+    android:elevation="8dp">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+<TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="Appointments"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:padding="4dp"
+        android:drawableLeft="@drawable/ic_medic"
+        android:drawablePadding="8dp"
+        />
+
+<TextView
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent" 
+    android:text="Keep a list of all your appointments with your doctor."
+    android:padding="6dp"/>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
 
 </LinearLayout>
