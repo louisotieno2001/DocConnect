@@ -20,6 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MessagesActivity"></activity>
+        <activity android:name=".ChatsActivity"></activity>
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".AppointmentsActivity"></activity>
+        <activity android:name=".DoctorRegistrationActivity"></activity>
     </application>
 
 </manifest>

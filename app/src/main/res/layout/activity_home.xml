@@ -211,7 +211,7 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent" 
     android:text="Keep a list of all your appointments with your doctor."
-    android:padding="6dp"/>
+    android:padding="5dp"/>
 
     </LinearLayout>
 
