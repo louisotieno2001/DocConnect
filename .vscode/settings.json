@@ -1,0 +1,9 @@
+{
+    "java.project.sourcePaths": [
+        "build/gen",
+        "app/java"
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ]
+}

@@ -1,0 +1,14 @@
+<ivy-module version="2.0">
+   <info organisation="com.healthcare" module="docconnect"/>
+  <dependencies>
+    <dependency org="androidx.appcompat" name="appcompat" rev="1.2.0" >
+       <artifact name="appcompat" type="aar" />
+     </dependency>
+     <dependency org="androidx.cardview" name="cardview" rev="1.0.0">
+       <artifact name="cardview" type="aar" />
+     </dependency>
+     <dependency org="com.google.android.material" name="material" rev="1.2.0">
+        <artifact name="material" type="aar" />
+     </dependency>
+  </dependencies>
+</ivy-module>

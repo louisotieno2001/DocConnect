@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="0dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        android:layout_margin="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/back_arrow"
+                android:background="@drawable/ic_back"
+                android:padding="24dp"
+                android:layout_margin="16dp"
+                android:contentDescription="@string/image_description"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/settings_text"
+                android:text="Settings"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:padding="24dp"
+                />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="16dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_pic"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_profile"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:layout_margin="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:id="@+id/name_text"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/name_edit"
+            android:padding="12dp"
+            android:background="@drawable/rounded_shape"
+            android:hint="Change your name"
+            android:drawableRight="@drawable/ic_edit"
+            android:layout_margin="6dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:layout_margin="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:id="@+id/number_text"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:id="@+id/phone_edit"
+            android:background="@drawable/rounded_shape"
+            android:hint="Change your number"
+            android:drawableRight="@drawable/ic_edit"
+            android:layout_margin="6dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Locality"
+            android:layout_margin="8dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:id="@+id/locality_text"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/locality_edit"
+            android:padding="12dp"
+            android:background="@drawable/rounded_shape"
+            android:hint="Change your locality"
+            android:layout_margin="6dp"
+            android:drawableEnd="@drawable/ic_edit"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/save_text"
+            android:gravity="center"
+            android:text="@string/save"
+            android:padding="16dp"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+ 
+</LinearLayout>

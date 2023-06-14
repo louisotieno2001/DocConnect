@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context=".MainActivity"
+    android:padding="72dp"
+    android:orientation="vertical"
+    android:gravity="center">
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:elevation="8dp"
+     app:cardBackgroundColor="#E3F2C1">
+    
+<EditText
+        android:id="@+id/phone_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:hint="Enter phone number"
+        android:layout_marginLeft="12dp"  
+        android:layout_marginRight="24dp" 
+        android:drawableLeft="@drawable/ic_phone"
+        android:drawablePadding="4dp"
+        android:padding="12dp"
+        android:background="@drawable/rounded_shape"/>
+
+<EditText
+        android:id="@+id/locality_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="172dp"
+        android:hint="Enter your locality"
+        android:layout_marginLeft="12dp"  
+        android:layout_marginRight="24dp" 
+        android:drawableLeft="@drawable/ic_locality"
+        android:drawablePadding="4dp"
+        android:padding="12dp"
+        android:background="@drawable/rounded_shape"/>
+
+<TextView
+        android:id="@+id/next_step"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="@string/next_step"
+        android:gravity="center"
+        android:textSize="25sp"
+
+        />        
+</androidx.cardview.widget.CardView>
+</LinearLayout>

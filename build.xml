@@ -1,0 +1,251 @@
+<?xml version="1.0" ?>
+<project name="docconnect" default="compile" xmlns:ivy="antlib:org.apache.ivy.ant">
+   <property file="build.properties"/>
+   <property environment="env"/>
+   <property name="android.sdk.version" value="33" />
+   <property name="android.jar" value="${env.ANDROID_HOME}/platforms/android-${android.sdk.version}/android.jar" />
+   <property name="plugin.path" value="${plugins.build}/${plugin.name}.jar"/>
+
+   <!--
+    ######################################################
+       Init:
+       This initializes the project folders if missing.
+       It also initializes the project custom tasks.
+    ######################################################-->
+   <target name="init" description="Initializes the project by creating all the required directories and defining all custom tasks">
+
+     <mkdir dir="${build.classes}" />
+     <mkdir dir="${build.path}/compiled-res" />
+     <mkdir dir="${build.jar}" />
+     <mkdir dir="${build.rgen}" />
+     <mkdir dir="${build.dex}" />
+     <mkdir dir="${lib.path}" />
+     <mkdir dir="${lib.res.path}" />
+     <mkdir dir="${build.proguard}" />
+
+     <taskdef name="android" classname="omenta.ant.android.Main" classpath="${plugin.path}"/>
+     <taskdef name="aapt" classname="omenta.ant.android.Aapt" classpath="${plugin.path}" />
+     <taskdef name="d8" classname="omenta.ant.android.D8" classpath="${plugin.path}" />
+     <taskdef name="ivy-android" classname="omenta.ant.android.IvyAndroid" classpath="${plugin.path}" />
+     
+     <android checkForSdk="true"/>
+
+   </target>
+
+    <!--
+    ######################################################
+       uptodate:
+       Sets the property aapt2Build.notRequired if res.apk
+       is older than its source files. Therefore allowing
+       to compile only when a src file is modified.
+    ######################################################-->
+   <uptodate property="aapt2Build.notRequired" targetfile="${build.path}/res.apk">
+     <srcfiles dir="app/res" includes="**/*"/>
+     <srcfiles dir="app" includes="AndroidManifest.xml"/>
+   </uptodate>
+
+    <!--
+    ######################################################
+       Compile:
+       Depends-On: aapt2 to generate R.java files
+       
+       Compiles .java files in app/java folder and build/rgen
+       folder. The library dependencies are included in lib 
+       folder and ANDROID_HOME. 
+    ######################################################-->
+   <target name="compile" depends="aapt2" description="Compiles java source files to .jar file" >
+     <!-- Compile .java to .class and output to build.classes -->
+     <javac destdir="${build.classes}" includeantruntime="false" >
+       <src path="${app.java.source}" />
+       <src path="${build.rgen}" />
+          <classpath>
+              <fileset dir="${lib.path}">
+                <include name="**/*.jar" />
+              </fileset>
+              <pathelement path="${android.jar}" />
+          </classpath>
+     </javac>
+     <!-- Combines .class files to a single .jar file -->
+     <jar basedir="${build.classes}" destfile="${build.jar}/app.jar"/>
+
+    </target>
+    <!--
+    ######################################################
+       Resolve:
+       Depends-On: init
+       Resolves and downloads the ivy dependencies of this
+       project. The downloaded .aars are extracted and placed 
+       in lib and lib-res folder for classes.jar files and 
+       res files respectively. It also generates PackageList.xml.
+    ######################################################-->
+    <target name="resolve" depends="init" description="Resolves and downloads all project dependencies  in ivy.xnl">
+      <ivy-android file="ivy.xml" settings="ivysettings.xml" />
+    </target>
+    <!--
+    ##########################################################
+       Aapt2:
+       Depends-On: init
+       Compiles resources in app/res and lib-res folder to
+       compiled-res .zip files. Then the resources are linked
+       together to produce a res.apk This apk is not yet
+       launchable since it lacks classes.dex files. The compile
+       resource phase produces R.java files required by java 
+       compiler. Run only when aapt2Build.notRequired is not set.
+    ##########################################################-->
+    <target name="aapt2" depends="init" unless="aapt2Build.notRequired">
+      <aapt  libresources="${lib.res.path}" compile="${app.res}" outfile="${build.path}/compiled-res/"/>
+      <aapt link="${build.path}/compiled-res/resources.zip" android="${env.ANDROID_HOME}/platforms/android-${android.sdk.version}/android.jar"
+      java="${build.rgen}/" outfile="${build.path}/res.apk" manifest="${app.manifest}"/>
+    </target>
+    <!--
+    ######################################################
+       Debug
+       For general testing on plugin tasks
+    ######################################################-->
+    <target name="debug" depends="init" description="For plugin testing purposes">
+       
+    </target>
+    <!--
+    ######################################################
+       D8 
+       Depends-On: Compile to generate app.jar file 
+       Generates classes.dex file from app.jar and its 
+       library jar dependencies. May generate additional
+       classesN.dex files when 64k method reference limit is 
+       reached. Where N is 1, 2, ....
+    ######################################################-->
+    <target name="d8" depends="compile" description="Generates classes.dex files for the project">
+      <d8 release="true" source="${build.jar}/app.jar" output="${build.dex}" classpath="${lib.path}" lib="${android.jar}">
+          <libpath>
+              <fileset dir="${lib.path}" includes="**/*.jar"/>
+          </libpath>
+      </d8>
+    </target>
+    <!--
+    ######################################################
+       Bundle 
+       Depends-On: d8 
+       Adds the classes.dex to res.apk by updating the res.apk 
+       zip file. It also aligns the res.apk archive with 
+       alignment of 4 to produce unsigned.apk. This is installable.
+    ######################################################-->
+    <target name="bundle" depends="d8" description="Bundles and zipaligns the apk ">
+      <echo> Bundling apk </echo>
+      <zip destfile="${build.path}/res.apk" update="true">
+          <fileset dir="${build.dex}" includes="classes*.dex"/>
+      </zip>
+      <echo>Zip Alingning apk </echo>
+      <zipalign alignment="4" in="${build.path}/res.apk" out="${build.path}/unsigned.apk" />
+    </target>
+    <!--
+    ######################################################
+       Apksign
+       Depends-On: bundle to generate unsigned.apk 
+       Signs the apk with the provided keystore
+    ######################################################-->
+    <target name="apksign" depends="bundle" description="Signs the apk with the provided keystore">
+      <echo> Signing apk </echo>
+      <apksigner ks="${keystore.debug}" keypass="${keystore.debug.pass}" alias="${keystore.debug.alias}" out="${build.path}/signed-debug.apk" in="${build.path}/unsigned.apk" />
+    </target>
+    <!--
+    ######################################################
+       Install 
+       Depends-On: apksign to generate signed-debug.apk 
+       Installs the generated .apk into the device available
+       in adb.
+    ######################################################-->
+    <target name="install" depends="apksign" description="Installs the generated signed-debug.apk">
+        <echo>Installing app</echo>
+        <install apk="${build.path}/signed-debug.apk" />
+    </target>
+
+    <!-- plugin compilation stuff -->
+    
+    <!-- 
+    ######################################################
+        Clean
+        cleans up the buid folder. suitable for recompiling.
+        It is advisable from time to time to clean up The
+        build cache to prevent combining stale binary files
+        with stale code. especially after git pull 
+    ######################################################-->
+    <target name="clean" description="Cleans up the build folder">
+        <delete dir="${build.path}" />
+    </target>
+    
+    <!-- 
+    ######################################################
+        Clean-Classes
+        ====Faster alternative to clean ====
+        cleans up the buid/classes folder. suitable for recompiling.
+        It is advisable from time to time to clean up The
+        build cache to prevent combining stale binary files
+        with stale code. especially after git pull 
+    ######################################################-->
+    <target name="clean-classes" description="Cleans up the build/classes folder">
+        <delete dir="${build.classes}" />
+    </target>
+    
+    <!--
+    ######################################################
+       Plugin-Setup
+       Compiles the project plugins in plugins folder and 
+       makes it available for use in this project custom
+       tasks.
+    ######################################################-->
+    <target name="plugin-setup" description="Initializes the project plugin">
+      
+      <mkdir dir="${plugins.classes}" />
+      <javac includeantruntime="true" srcdir="${plugins.src}" destdir="${plugins.classes}"/>
+      <jar destfile="${plugins.build}/${plugin.name}.jar" basedir="${plugins.classes}" />
+
+    </target>
+    
+    <!-- Macros -->
+    <!-- ====== Signs the apk ======== -->
+    <macrodef name="apksigner">
+      <attribute name="ks"/>
+      <attribute name="keypass"/>
+      <attribute name="alias"/>
+      <attribute name="out"/>
+      <attribute name="in"/>
+      <sequential>
+        <exec executable="apksigner" failonerror="true">
+          <arg value="sign"/>
+          <arg value="--ks" />
+          <arg value="@{ks}"/>
+          <arg value="--ks-key-alias"/>
+          <arg value="@{alias}"/>
+          <arg value="--ks-pass"/>
+          <arg value="pass:@{keypass}"/>
+          <arg value="--out"/>
+          <arg value="@{out}"/>
+          <arg value="@{in}" />
+        </exec>
+      </sequential>
+    </macrodef>
+    <!-- ====== Zip aligns the apk ======== -->
+    <macrodef name="zipalign">
+       <attribute name="in" />
+       <attribute name="out" />
+       <attribute name="alignment"/>
+       <sequential>
+           <exec executable="zipalign" failonerror="true">
+              <arg value="-f" />
+              <arg value="@{alignment}"/>
+              <arg value="@{in}" />
+              <arg value="@{out}" />
+           </exec>
+       </sequential>
+    </macrodef>
+    <!-- ======= Installs the apk ========== -->
+    <macrodef name="install">
+        <attribute name="apk"/>
+        <sequential>
+            <exec executable="adb" failonerror="true">
+                <arg value="install"/>
+                <arg value="@{apk}" />
+            </exec>
+        </sequential>
+    </macrodef>
+</project>
