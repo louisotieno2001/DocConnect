@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "448525236995",
+    "project_id": "louis-308aa",
+    "storage_bucket": "louis-308aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448525236995:android:172652bd3b2a297985c736",
+        "android_client_info": {
+          "package_name": "com.healthcare.docconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "448525236995-lr0f94rp7umr7svtq46kpvrj4h8b4nio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyc6DUotlLOFAyVzwamPMrK5lNZxRceSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "448525236995-lr0f94rp7umr7svtq46kpvrj4h8b4nio.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

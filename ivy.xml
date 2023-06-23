@@ -10,5 +10,14 @@
      <dependency org="com.google.android.material" name="material" rev="1.2.0">
         <artifact name="material" type="aar" />
      </dependency>
+     <dependency org="com.google.firebase" name="firebase-bom" rev="32.1.1">
+         <artifact name="firebase-bom" type="aar" />
+     </dependency>
+     <dependency org="com.google.firebase" name="firebase-storage">
+          <artifact name="firebase-storage" type="aar" /> 
+     </dependency>
+      <dependency org="com.google.firebase" name="firebase-messaging">
+          <artifact name="firebase-messaging" type="aar" />  
+      </dependency>
   </dependencies>
 </ivy-module>
