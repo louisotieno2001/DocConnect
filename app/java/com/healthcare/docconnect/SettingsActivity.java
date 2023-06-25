@@ -70,7 +70,7 @@ public class SettingsActivity extends AppCompatActivity{
 
    
 
-        //click listeners and intent setting
+        //click listeners and intent setting for back arrow
         backArrowImage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -150,6 +150,36 @@ public class SettingsActivity extends AppCompatActivity{
             Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void updateProfileWithImageUrl(String imageUrl) {
+    // Get the user ID
+    String userId = getCurrentUserId();
+
+    // Check if the user ID is valid
+    if (userId != null) {
+        // Get a DatabaseReference to the user's profile
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
+
+        // Update the profile image URL
+        userRef.child("profileImageUrl").setValue(imageUrl)
+            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(SettingsActivity.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(SettingsActivity.this, "Failed to update profile", Toast.LENGTH_SHORT).show();
+                }
+            });
+    } else {
+        // Handle the situation when user ID is not available
+        Toast.makeText(SettingsActivity.this, "Please create an account first" ,Toast.LENGTH_SHORT).show();
+    }
+}
+
 
      private String getCurrentUserId() {
 

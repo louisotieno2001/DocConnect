@@ -7,11 +7,25 @@ import android.widget.ImageView;
 import android.content.Context;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
+import android.view.LayoutInflater;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+
+import java.util.List;
+import java.util.ArrayList;
+
 
 public class MessagesActivity extends AppCompatActivity{
     //Declaring views
-    ImageView backArrowImage;
-    RecyclerView recView;
+    private ImageView backArrowImage;
+    private RecyclerView recView;
+    private MyAdapter messageAdapter;
+    private List<String> messages;
+
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +35,19 @@ public class MessagesActivity extends AppCompatActivity{
         //Initializing views
         backArrowImage = findViewById(R.id.back_arrow);
         recView = findViewById(R.id.recyclerView);
+        
+        messageAdapter = new MyAdapter(MessagesActivity.this, messages);
+        messages = new ArrayList<>();
+
+        messages.add("Hello");
+        messages.add("How are you?");
+        messages.add("I'm fine, thank you!");
+      
+
+
+        recView.setLayoutManager(new LinearLayoutManager(this));
+        recView.setAdapter(messageAdapter);
+
 
         //Clicklisteners
         backArrowImage.setOnClickListener(new View.OnClickListener(){
@@ -32,4 +59,41 @@ public class MessagesActivity extends AppCompatActivity{
 
         });
     }
+
+
+    class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+    private List<String> messages;
+    private Context context;
+
+    public MyAdapter(Context context, List<String> dataList) {
+        this.context = context;
+        this.messages = messages;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_row, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        String data = messages.get(position);
+        holder.textView.setText(data);
+    }
+
+    @Override
+    public int getItemCount() {
+        return messages.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView textView;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            textView = itemView.findViewById(R.id.text_message_view);
+        }
+    }
+}
 }

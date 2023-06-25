@@ -11,10 +11,15 @@ import android.widget.LinearLayout;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+
 public class AppointmentsActivity extends AppCompatActivity{
    //Declaring views
    ImageView backArrowImage;
    TextView  addAppointmentText;
+
+   Drawable drawable = getResources().getDrawable(R.drawable.rounded_shape);
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,9 @@ public class AppointmentsActivity extends AppCompatActivity{
         linearLayout.addView(dateEditText);
 
         // Set background using rounded_shape drawable
-
+        if (drawable instanceof GradientDrawable) {
+            dateEditText.setBackground(drawable);
+        }
 
         // Create TextView for "Time"
         TextView timeTextView = new TextView(AppointmentsActivity.this);
@@ -62,7 +69,9 @@ public class AppointmentsActivity extends AppCompatActivity{
         EditText timeEditText = new EditText(AppointmentsActivity.this);
         
         // Set background using rounded_shape drawable
-
+        if (drawable instanceof GradientDrawable) {
+            timeEditText.setBackground(drawable);
+        }
 
         linearLayout.addView(timeEditText);
 
@@ -75,10 +84,12 @@ public class AppointmentsActivity extends AppCompatActivity{
         EditText doctorEditText = new EditText(AppointmentsActivity.this);
         
         // Set background using rounded_shape drawable
-
+        if (drawable instanceof GradientDrawable) {
+            doctorEditText.setBackground(drawable);
+        }
         linearLayout.addView(doctorEditText);
-    }
-});
+        }
+     });
 
     }
 }
