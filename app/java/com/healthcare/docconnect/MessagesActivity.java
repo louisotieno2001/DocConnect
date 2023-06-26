@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.graphics.Color;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.annotation.NonNull;
@@ -73,6 +74,15 @@ public class MessagesActivity extends AppCompatActivity{
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_row, parent, false);
+        
+        view.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(v.getContext(), ChatsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return new ViewHolder(view);
     }
 
@@ -80,6 +90,7 @@ public class MessagesActivity extends AppCompatActivity{
     public void onBindViewHolder(ViewHolder holder, int position) {
         String data = messages.get(position);
         holder.textView.setText(data);
+        holder.profileImage.setBackgroundResource(R.drawable.ic_profile);
     }
 
     @Override
@@ -89,11 +100,13 @@ public class MessagesActivity extends AppCompatActivity{
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
+        public ImageView profileImage;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.text_message_view);
-        }
+            textView = itemView.findViewById(R.id.messages_view);
+            profileImage = itemView.findViewById(R.id.profile_pic);
+        }  
     }
 }
 }

@@ -181,7 +181,7 @@ public class SettingsActivity extends AppCompatActivity{
 }
 
 
-     private String getCurrentUserId() {
+    private String getCurrentUserId() {
 
             FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
             if (currentUser != null) {
@@ -192,7 +192,7 @@ public class SettingsActivity extends AppCompatActivity{
         // Handle the situation accordingly
         return null;
         }
-   }
+    }
 
 }
 
