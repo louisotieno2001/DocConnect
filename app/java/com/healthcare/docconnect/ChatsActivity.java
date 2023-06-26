@@ -147,13 +147,15 @@ private StorageReference storageReference;
 
     private String getCurrentUserId() {
 
-            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
             if (currentUser != null) {
                   String userId = currentUser.getUid();
                    return userId;
           } else {
         // User is not authenticated or session expired
         // Handle the situation accordingly
+        Intent intent = new Intent(ChatsActivity.this, MainActivity.class);
+        startActivity(intent);
         return null;
         }
     }
