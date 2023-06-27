@@ -78,7 +78,7 @@ public class MessagesActivity extends AppCompatActivity{
         view.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(v.getContext(), ChatsActivity.class);
+                Intent intent = new Intent(v.getContext(), MessagingActivity.class);
                 startActivity(intent);
             }
         });

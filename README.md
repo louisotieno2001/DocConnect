@@ -1,5 +1,5 @@
-# LinkerApp
-
+# DocConnect
+This is a simple app that enables users to contact a doctor when in need by either texting them when the issue is not too emergent and directly contacting the doctor by displaying the routes to where the patent is incase of emmergencies
 
 # Build system setup
 This project uses a custom build script powered by apache ant. The build script build.xml utilizes ant plugin system and android sdk build tools for compilation.

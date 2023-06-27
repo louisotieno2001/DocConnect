@@ -131,6 +131,7 @@ public class SettingsActivity extends AppCompatActivity{
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Toast.makeText(SettingsActivity.this, "Profile picture uploaded", Toast.LENGTH_SHORT).show();
                             // TODO: Update the user's profile with the new image URL
+                            updateProfileWithImageUrl();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
