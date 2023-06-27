@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         messagesCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), MessagesActivity.class);
+                Intent intent = new Intent(v.getContext(), MessagingActivity.class);
                 startActivity(intent);
             }
         });

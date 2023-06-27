@@ -36,7 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class ChatsActivity extends AppCompatActivity{
+public class MessagingActivity extends AppCompatActivity{
 //Declaring views
 private ImageView backArrowImage;
 private ImageView sendMessageIcon;
@@ -70,7 +70,7 @@ private StorageReference storageReference;
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
         DatabaseReference userRef = usersRef.child(userId);
 
-        messageAdapter = new MyAdapter(ChatsActivity.this, messages);
+        messageAdapter = new MyAdapter(MessagingActivity.this, messages);
         messages = new ArrayList<>();
 
         messages.add("Hello");
@@ -147,15 +147,13 @@ private StorageReference storageReference;
 
     private String getCurrentUserId() {
 
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
             if (currentUser != null) {
                   String userId = currentUser.getUid();
                    return userId;
           } else {
         // User is not authenticated or session expired
         // Handle the situation accordingly
-        Intent intent = new Intent(ChatsActivity.this, MainActivity.class);
-        startActivity(intent);
         return null;
         }
     }
