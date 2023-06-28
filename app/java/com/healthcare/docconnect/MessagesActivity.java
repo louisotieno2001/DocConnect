@@ -14,11 +14,9 @@ import android.widget.TextView;
 import android.graphics.Color;
 
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.annotation.NonNull;
 
 import java.util.List;
 import java.util.ArrayList;
-
 
 public class MessagesActivity extends AppCompatActivity{
     //Declaring views

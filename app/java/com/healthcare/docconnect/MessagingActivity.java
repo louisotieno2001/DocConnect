@@ -1,6 +1,8 @@
 package com.healthcare.docconnect;
 
 import android.os.Bundle;
+import android.net.Uri;
+import android.Manifest;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.EditText;
@@ -13,15 +15,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 
 import java.util.List;
 import java.util.ArrayList;
 import android.widget.Toast;
-import androidx.annotation.Nullable;
 import android.provider.MediaStore;
+import androidx.appcompat.app.AlertDialog;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -30,11 +31,21 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.DexterError;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.PermissionRequestErrorListener;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 public class MessagingActivity extends AppCompatActivity{
 //Declaring views
@@ -46,6 +57,7 @@ private EditText messageInput;
 private MyAdapter messageAdapter;
 private List<String> messages;
 private StorageReference storageReference;
+public static final int RC_PHOTO_PICKER = 1001;
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +105,14 @@ private StorageReference storageReference;
                     messageInput.setText("");
                     recView.scrollToPosition(messages.size() - 1);
                 }
+            }
+        });
+
+        // ImagePickerButton shows an image picker to upload a image for a message
+        attachIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requestExternalStorage();
             }
         });
 
@@ -154,7 +174,48 @@ private StorageReference storageReference;
           } else {
         // User is not authenticated or session expired
         // Handle the situation accordingly
+
         return null;
         }
     }
+
+       private void requestExternalStorage() {
+        Dexter.withActivity(this)
+                .withPermission(
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                )
+                .withListener(new PermissionListener() {
+                    @Override
+                    public void onPermissionGranted(PermissionGrantedResponse response) {
+                        Intent inte = new Intent(Intent.ACTION_GET_CONTENT);
+                        inte.setType("image/jpeg");
+                        inte.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+                        startActivityForResult(Intent.createChooser(inte, "Complete Action Using"), RC_PHOTO_PICKER);
+
+                    }
+
+                    @Override
+                    public void onPermissionDenied(PermissionDeniedResponse response) {
+                        // check for permanent denial of any permission
+                        if (response.isPermanentlyDenied()) {
+                            // show alert dialog navigating to Settings
+                            Toast.makeText(MessagingActivity.this, "Permission denied", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                })
+                .withErrorListener(new PermissionRequestErrorListener() {
+                    @Override
+                    public void onError(DexterError error) {
+                        Log.e("Dexter", "There was an error: " + error.toString());
+                    }
+                })
+                .onSameThread()
+                .check();
+    }
+
 }

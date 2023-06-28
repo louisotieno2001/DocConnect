@@ -1,8 +1,8 @@
 <ivy-module version="2.0">
    <info organisation="com.healthcare" module="docconnect"/>
   <dependencies>
-    <dependency org="androidx.appcompat" name="appcompat" rev="1.2.0" >
-       <artifact name="appcompat" type="aar" />
+    <dependency org="androidx.appcompat" name="appcompat" rev="1.2.0">
+       <artifact name="appcompat" type="jar" />
      </dependency>
      <dependency org="androidx.cardview" name="cardview" rev="1.0.0">
        <artifact name="cardview" type="aar" />
@@ -29,10 +29,19 @@
          <artifact name="firebase-config" type="aar"/>
       </dependency>
       <dependency org="com.karumi" name="dexter" rev="6.2.3">
-          <artifact name="dexter" type="aar"/>
+          <artifact name="dexter" type="jar"/>
       </dependency>
       <dependency org="com.github.bumptech.glide" name="glide" rev="4.12.0">
-          <artifact name="glide" type="aar"/>
+          <artifact name="glide" type="jar"/>
+      </dependency>
+      <dependency org="com.android.volley" name="volley" rev="1.2.1" >
+          <artifact name="volley" type="aar"/>
+      </dependency>
+      <dependency org="com.google.android.gms" name="play-services-maps" rev="18.1.0">
+          <artifact name="play-services-maps" type="aar" />
+      </dependency>
+      <dependency org="com.google.android.gms" name="play-services-location" rev="21.0.1">
+          <artifact name="play-services-location" type="aar" />
       </dependency>
   </dependencies>
 </ivy-module>

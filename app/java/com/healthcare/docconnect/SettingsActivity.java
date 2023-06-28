@@ -12,8 +12,6 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -113,7 +111,7 @@ public class SettingsActivity extends AppCompatActivity{
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_CODE_IMAGE && resultCode == RESULT_OK && data != null) {
@@ -131,12 +129,12 @@ public class SettingsActivity extends AppCompatActivity{
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Toast.makeText(SettingsActivity.this, "Profile picture uploaded", Toast.LENGTH_SHORT).show();
                             // TODO: Update the user's profile with the new image URL
-                            updateProfileWithImageUrl();
+                            //updateProfileWithImageUrl();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
-                        public void onFailure(@NonNull Exception e) {
+                        public void onFailure(Exception e) {
                             Toast.makeText(SettingsActivity.this, "Failed to upload profile picture", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -144,7 +142,7 @@ public class SettingsActivity extends AppCompatActivity{
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == REQUEST_CODE_PERMISSION && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             openImagePicker();
         } else {
@@ -171,7 +169,7 @@ public class SettingsActivity extends AppCompatActivity{
             })
             .addOnFailureListener(new OnFailureListener() {
                 @Override
-                public void onFailure(@NonNull Exception e) {
+                public void onFailure(Exception e) {
                     Toast.makeText(SettingsActivity.this, "Failed to update profile", Toast.LENGTH_SHORT).show();
                 }
             });

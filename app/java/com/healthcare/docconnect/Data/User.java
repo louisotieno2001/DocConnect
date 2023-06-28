@@ -19,8 +19,8 @@ public class User implements BaseColumns, Parcelable {
     public static final String COLUMN_PHONE = "phone";
     public static final String COLUMN_LOCALITY = "locality";
     public static final String COLUMN_TITLE = "title";
-    private static final String DEFAULT_TITLE = "Patient";
-    private static final String DOCTOR_TITLE = "Doctor";
+    private static final String DEFAULT_TITLE = "patient";
+    private static final String DOCTOR_TITLE = "doctor";
 
     private String id;
     private String phone;

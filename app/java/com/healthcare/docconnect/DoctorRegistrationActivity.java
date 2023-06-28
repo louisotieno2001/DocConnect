@@ -26,7 +26,8 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
     EditText specialityEdit;
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser currentUser = auth.getCurrentUser();
-
+    public final String DOCTOR_TITLE = "doctor";
+    public final String DOC_NAME="doctor";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,8 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
                 //Save the input values to users profile
                 userRef.child("institution").setValue(institution);
                 userRef.child("speciality").setValue(speciality);
+                userRef.child("title").setValue(DOCTOR_TITLE);
+                userRef.child("name").setValue(DOC_NAME);
 
                 //Show success messsages
                 Toast.makeText(DoctorRegistrationActivity.this, "Successfully registered", Toast.LENGTH_SHORT).show();
@@ -82,6 +85,8 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
           } else {
         // User is not authenticated or session expired
         // Handle the situation accordingly
+        Intent intent = new Intent(DoctorRegistrationActivity.this, MainActivity.class);
+        startActivity(intent);
         return null;
         }
    }

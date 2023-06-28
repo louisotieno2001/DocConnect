@@ -14,28 +14,28 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    //Declaring views
+    // Declaring views
     EditText phoneEdit;
     EditText localityEdit;
     TextView nextStepText;
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser currentUser = auth.getCurrentUser();
+    public final String TITLE = "patient";
+    public final String NAME = "patient";
+    public final String DOC_NAME = "doctor";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Initializing views
+        // Initializing views
         phoneEdit = findViewById(R.id.phone_edit);
         localityEdit = findViewById(R.id.locality_edit);
         nextStepText = findViewById(R.id.next_step);
 
-       
-
-
-        //Handling data input in the EditText
-        nextStepText.setOnClickListener(new View.OnClickListener(){
+        // Handling data input in the EditText
+        nextStepText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Get the input values from EditText fields
@@ -44,36 +44,37 @@ public class MainActivity extends AppCompatActivity {
 
                 // Get the user ID
                 String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        
+
                 // Initialize the DatabaseReference for the user
                 DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
                 DatabaseReference userRef = usersRef.child(userId);
-              
-        
+
                 // Save the input values to the user's profile in Firebase Realtime Database
                 userRef.child("phoneNumber").setValue(phoneNumber);
                 userRef.child("locality").setValue(locality);
-        
+                userRef.child("title").setValue(TITLE);
+                userRef.child("name").setValue(NAME);
+
                 // Show a success message or perform any additional actions
                 Toast.makeText(MainActivity.this, "Details saved successfully", Toast.LENGTH_SHORT).show();
+
+                // Transition to the HomeActivity
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish(); // Optional, if you want to close the MainActivity after transitioning
             }
         });
-        
-    
-
-      
     }
 
     private String getCurrentUserId() {
-
-            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-            if (currentUser != null) {
-                  String userId = currentUser.getUid();
-                   return userId;
-          } else {
-        // User is not authenticated or session expired
-        // Handle the situation accordingly
-        return null;
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            return userId;
+        } else {
+            // User is not authenticated or session expired
+            // Handle the situation accordingly
+            return null;
         }
-   }
+    }
 }

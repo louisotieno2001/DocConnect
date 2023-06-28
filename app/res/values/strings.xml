@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DocConnect</string>
+    <string name="my_app_name">DocConnect</string>
     <string name="image_description">Go back to previous page.</string>
     <string name="save">Save</string>
     <string name="speciality">e.g nurse, dentist ...</string>

@@ -5,11 +5,11 @@
     android:versionCode="1"
     android:versionName="1.0.0" 
     >
-    
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:node="remove"/>
-
+     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -19,6 +19,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppBaseTheme"
         tools:targetApi="31">
+
+    <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAkKyInQ3qk7Hpu8rx273pJ9npWrg33SK8" />    
     
     <meta-data
     android:name="firebase_messaging_auto_init_enabled"
@@ -42,13 +46,13 @@
         <activity android:name=".MessagesActivity"></activity>
         <activity android:name=".ChatsActivity"></activity>
         <activity android:name=".SettingsActivity"></activity>
-        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".SplashActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".HomeActivity">
-         <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".AppointmentsActivity"></activity>
         <activity android:name=".DoctorRegistrationActivity"></activity>
