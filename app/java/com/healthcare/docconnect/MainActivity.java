@@ -13,7 +13,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+import com.healthcare.docconnect.RegistrationCallback;
+
+public class MainActivity extends AppCompatActivity  implements RegistrationCallback{
     // Declaring views
     EditText phoneEdit;
     EditText localityEdit;
@@ -55,13 +57,14 @@ public class MainActivity extends AppCompatActivity {
                 userRef.child("title").setValue(TITLE);
                 userRef.child("name").setValue(NAME);
 
+               
                 // Show a success message or perform any additional actions
                 Toast.makeText(MainActivity.this, "Details saved successfully", Toast.LENGTH_SHORT).show();
 
-                // Transition to the HomeActivity
-                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish(); // Optional, if you want to close the MainActivity after transitioning
+               // Invoke the callback method in MainActivity
+               if (MainActivity.this instanceof RegistrationCallback) {
+                   ((RegistrationCallback) MainActivity.this).onRegistrationSuccess(userId);
+               }
             }
         });
     }
@@ -77,4 +80,15 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
+     @Override
+    public void onRegistrationSuccess(String userId) {
+    // Transition to the HomeActivity
+    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+    // Pass the user ID to the HomeActivity
+    intent.putExtra("userId", userId);
+    startActivity(intent);
+    finish(); // Optional, if you want to close the MainActivity after transitioning
+    }
 }
+  

@@ -2,7 +2,7 @@
    <info organisation="com.healthcare" module="docconnect"/>
   <dependencies>
     <dependency org="androidx.appcompat" name="appcompat" rev="1.2.0">
-       <artifact name="appcompat" type="jar" />
+       <artifact name="appcompat" type="aar" />
      </dependency>
      <dependency org="androidx.cardview" name="cardview" rev="1.0.0">
        <artifact name="cardview" type="aar" />
@@ -29,7 +29,7 @@
          <artifact name="firebase-config" type="aar"/>
       </dependency>
       <dependency org="com.karumi" name="dexter" rev="6.2.3">
-          <artifact name="dexter" type="jar"/>
+          <artifact name="dexter" type="aar"/>
       </dependency>
       <dependency org="com.github.bumptech.glide" name="glide" rev="4.12.0">
           <artifact name="glide" type="jar"/>

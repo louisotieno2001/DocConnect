@@ -20,6 +20,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Retrieve the user ID from the intent extras
+        String userId = getIntent().getStringExtra("userId");
+        if (userId != null) {
+        // Use the user ID as needed
+         
+        }
+
         // Initializing views
         contactsCard = findViewById(R.id.contacts_card);
         messagesCard = findViewById(R.id.messages_card);
