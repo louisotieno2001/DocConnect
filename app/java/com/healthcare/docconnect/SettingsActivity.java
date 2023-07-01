@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.FirebaseApp;
 
 public class SettingsActivity extends AppCompatActivity{
    //Declaring views
@@ -49,7 +50,7 @@ public class SettingsActivity extends AppCompatActivity{
         phoneNumberEdit = findViewById(R.id.phone_edit);
         localityEdit = findViewById(R.id.locality_edit);
         saveSettingText = findViewById(R.id.save_text);
-
+    FirebaseApp.initializeApp(this);
         storageReference = FirebaseStorage.getInstance().getReference();
 
         profileImage.setOnClickListener(new View.OnClickListener() {

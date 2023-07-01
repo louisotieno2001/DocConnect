@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import com.google.firebase.FirebaseApp;
 
 public class AppointmentsActivity extends AppCompatActivity{
    //Declaring views
@@ -29,7 +30,7 @@ public class AppointmentsActivity extends AppCompatActivity{
         //initializing variables
         backArrowImage = findViewById(R.id.back_arrow);
         addAppointmentText = findViewById(R.id.add_text);
-
+        FirebaseApp.initializeApp(this);
 
        //Functionalizing views by adding click listeners
        backArrowImage.setOnClickListener(new View.OnClickListener(){

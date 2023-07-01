@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.FirebaseApp;
 
 public class DoctorRegistrationActivity extends AppCompatActivity {
     //Declaring views
@@ -28,6 +29,7 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
     FirebaseUser currentUser = auth.getCurrentUser();
     public final String DOCTOR_TITLE = "doctor";
     public final String DOC_NAME="doctor";
+   
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class DoctorRegistrationActivity extends AppCompatActivity {
         saveDetailsText = findViewById(R.id.save_text);
         institutionEdit = findViewById(R.id.institution_edit);
         specialityEdit = findViewById(R.id.speciality_edit);
-
+ FirebaseApp.initializeApp(this);
         //Adding click listeners
         backArrowImage.setOnClickListener(new View.OnClickListener(){
             @Override

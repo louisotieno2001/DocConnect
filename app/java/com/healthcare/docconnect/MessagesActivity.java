@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.graphics.Color;
+import com.google.firebase.FirebaseApp;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,7 +31,7 @@ public class MessagesActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
-        
+        FirebaseApp.initializeApp(this);
         //Initializing views
         backArrowImage = findViewById(R.id.back_arrow);
         recView = findViewById(R.id.recyclerView);

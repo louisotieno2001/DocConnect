@@ -37,6 +37,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.FirebaseApp;
 
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
@@ -63,7 +64,7 @@ public static final int RC_PHOTO_PICKER = 1001;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chats);
-        
+            FirebaseApp.initializeApp(this);
         //Initializing views
         messageInput = findViewById(R.id.editTextMessage);
         backArrowImage = findViewById(R.id.back_arrow);

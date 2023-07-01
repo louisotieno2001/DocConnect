@@ -36,6 +36,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,11 +49,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Location userLocation;
     private Location contactLocation;
     private GoogleMap googleMap;
-
+   
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        FirebaseApp.initializeApp(this);
 
         routeButton = findViewById(R.id.route_button);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);

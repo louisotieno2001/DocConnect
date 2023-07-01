@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.FirebaseApp;
 
 import com.healthcare.docconnect.RegistrationCallback;
 
@@ -25,12 +26,13 @@ public class MainActivity extends AppCompatActivity  implements RegistrationCall
     public final String TITLE = "patient";
     public final String NAME = "patient";
     public final String DOC_NAME = "doctor";
+   
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+ FirebaseApp.initializeApp(this);
         // Initializing views
         phoneEdit = findViewById(R.id.phone_edit);
         localityEdit = findViewById(R.id.locality_edit);

@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.Query;
+import com.google.firebase.FirebaseApp;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -27,12 +28,13 @@ public class ContactsActivity extends AppCompatActivity {
     private List<String> doctorNames;
     public final String NAME = "patient";
     public final String DOC_NAME = "doctor";
+   
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
-
+ FirebaseApp.initializeApp(this);
         // Initialize the Firebase database reference
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
