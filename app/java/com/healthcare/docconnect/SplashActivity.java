@@ -31,7 +31,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-    FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this);
         // Simulating user verification in the background
         boolean isUserVerified = verifyUserInBackground();
 

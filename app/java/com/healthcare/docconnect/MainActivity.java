@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity  implements RegistrationCall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
- FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this);
         // Initializing views
         phoneEdit = findViewById(R.id.phone_edit);
         localityEdit = findViewById(R.id.locality_edit);
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity  implements RegistrationCall
         }
     }
 
-     @Override
+    @Override
     public void onRegistrationSuccess(String userId) {
     // Transition to the HomeActivity
     Intent intent = new Intent(MainActivity.this, HomeActivity.class);

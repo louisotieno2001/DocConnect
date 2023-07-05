@@ -15,14 +15,12 @@ public class HomeActivity extends AppCompatActivity {
     CardView messagesCard;
     CardView settingsCard;
     CardView registerDoctorCard;
-    CardView appointmentsCard;
-   ;
-
+    CardView appointmentsCard;    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
- FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this);
         // Retrieve the user ID from the intent extras
         String userId = getIntent().getStringExtra("userId");
         if (userId != null) {

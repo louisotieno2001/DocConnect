@@ -2,6 +2,7 @@ package com.healthcare.docconnect;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.Gravity;
 import android.content.Intent;
 import android.widget.TextView;
 import android.widget.EditText;
@@ -34,7 +35,7 @@ public class ContactsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
- FirebaseApp.initializeApp(this);
+        FirebaseApp.initializeApp(this);
         // Initialize the Firebase database reference
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -102,23 +103,40 @@ public class ContactsActivity extends AppCompatActivity {
         }
     }
 
-    private void populateContactsLayout(List<String> doctorNames) {
-        // Programmatically populate the contacts activity layout
+   private void populateContactsLayout(List<String> doctorNames) {
+    // Get the layout container
+    LinearLayout contactsLayout = findViewById(R.id.contactsLayout);
 
-        // Get the layout container
-        LinearLayout contactsLayout = findViewById(R.id.contactsLayout);
+    // Clear existing views
+    contactsLayout.removeAllViews();
 
-        // Clear existing views
-        contactsLayout.removeAllViews();
+    // Create and add views for each doctor name
+    for (String doctorName : doctorNames) {
+        // Create a new LinearLayout to hold the doctor item
+        LinearLayout doctorLayout = new LinearLayout(this);
+        doctorLayout.setOrientation(LinearLayout.HORIZONTAL);
+        doctorLayout.setGravity(Gravity.CENTER_VERTICAL);
 
-        // Create and add views for each doctor name
-        for (String doctorName : doctorNames) {
-            // Create a new TextView for each doctor
-            TextView textViewDoctor = new TextView(this);
-            textViewDoctor.setText(doctorName);
+        // Create the TextView for the doctor name
+        TextView textViewDoctor = new TextView(this);
+        textViewDoctor.setText(doctorName);
 
-            // Add the TextView to the contacts layout
-            contactsLayout.addView(textViewDoctor);
-        }
+        // Create the ImageView for the first drawable (ic_locality)
+        ImageView imageViewLocality = new ImageView(this);
+        imageViewLocality.setImageResource(R.drawable.ic_locality);
+
+        // Create the ImageView for the second drawable (ic_chat)
+        ImageView imageViewChat = new ImageView(this);
+        imageViewChat.setImageResource(R.drawable.ic_chat);
+
+        // Add the TextView and ImageViews to the doctor layout
+        doctorLayout.addView(textViewDoctor);
+        doctorLayout.addView(imageViewLocality);
+        doctorLayout.addView(imageViewChat);
+
+        // Add the doctor layout to the contacts layout
+        contactsLayout.addView(doctorLayout);
     }
+}
+
 }
