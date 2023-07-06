@@ -28,25 +28,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import android.util.Log;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.FirebaseApp;
-
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.DexterError;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.PermissionRequestErrorListener;
-import com.karumi.dexter.listener.single.PermissionListener;
 
 public class MessagingActivity extends AppCompatActivity{
 //Declaring views
@@ -57,14 +39,13 @@ private RecyclerView recView;
 private EditText messageInput;
 private MyAdapter messageAdapter;
 private List<String> messages;
-private StorageReference storageReference;
 public static final int RC_PHOTO_PICKER = 1001;
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chats);
-            FirebaseApp.initializeApp(this);
+        
         //Initializing views
         messageInput = findViewById(R.id.editTextMessage);
         backArrowImage = findViewById(R.id.back_arrow);
@@ -72,31 +53,17 @@ public static final int RC_PHOTO_PICKER = 1001;
         attachIcon = findViewById(R.id.icon_attach);
         recView = findViewById(R.id.listViewMessages);
 
-        //Creating instance of firebase database
-        storageReference = FirebaseStorage.getInstance().getReference();
-
-        //Getting user ID
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-
-        // Initialize the DatabaseReference for the user
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
-        DatabaseReference userRef = usersRef.child(userId);
-
-        messageAdapter = new MyAdapter(MessagingActivity.this, messages);
         messages = new ArrayList<>();
 
         messages.add("Hello");
         messages.add("How are you?");
         messages.add("I'm fine, thank you!");
+        messageAdapter = new MyAdapter(MessagingActivity.this, messages);
 
         recView.setLayoutManager(new LinearLayoutManager(this));
         recView.setAdapter(messageAdapter);
 
         sendMessageIcon.setOnClickListener(new View.OnClickListener() {
-             // Get the user ID
-            String userId = getCurrentUserId();
-            
             @Override
             public void onClick(View v) {
                 String message = messageInput.getText().toString().trim();
@@ -113,7 +80,7 @@ public static final int RC_PHOTO_PICKER = 1001;
         attachIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                requestExternalStorage();
+              
             }
         });
 
@@ -165,58 +132,5 @@ public static final int RC_PHOTO_PICKER = 1001;
     }
 }
 
-
-    private String getCurrentUserId() {
-
-            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-            if (currentUser != null) {
-                  String userId = currentUser.getUid();
-                   return userId;
-          } else {
-        // User is not authenticated or session expired
-        // Handle the situation accordingly
-
-        return null;
-        }
-    }
-
-       private void requestExternalStorage() {
-        Dexter.withActivity(this)
-                .withPermission(
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                )
-                .withListener(new PermissionListener() {
-                    @Override
-                    public void onPermissionGranted(PermissionGrantedResponse response) {
-                        Intent inte = new Intent(Intent.ACTION_GET_CONTENT);
-                        inte.setType("image/jpeg");
-                        inte.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-                        startActivityForResult(Intent.createChooser(inte, "Complete Action Using"), RC_PHOTO_PICKER);
-
-                    }
-
-                    @Override
-                    public void onPermissionDenied(PermissionDeniedResponse response) {
-                        // check for permanent denial of any permission
-                        if (response.isPermanentlyDenied()) {
-                            // show alert dialog navigating to Settings
-                            Toast.makeText(MessagingActivity.this, "Permission denied", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-                        token.continuePermissionRequest();
-                    }
-                })
-                .withErrorListener(new PermissionRequestErrorListener() {
-                    @Override
-                    public void onError(DexterError error) {
-                        Log.e("Dexter", "There was an error: " + error.toString());
-                    }
-                })
-                .onSameThread()
-                .check();
-    }
 
 }

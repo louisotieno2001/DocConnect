@@ -7,27 +7,18 @@ import android.content.Context;
 import androidx.cardview.widget.CardView;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.FirebaseApp;
-
 public class HomeActivity extends AppCompatActivity {
     // Declaring views
     CardView contactsCard;
     CardView messagesCard;
     CardView settingsCard;
     CardView registerDoctorCard;
-    CardView appointmentsCard;    
+    CardView appointmentsCard; 
+       
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        FirebaseApp.initializeApp(this);
-        // Retrieve the user ID from the intent extras
-        String userId = getIntent().getStringExtra("userId");
-        if (userId != null) {
-        // Use the user ID as needed
-         
-        }
-
         // Initializing views
         contactsCard = findViewById(R.id.contacts_card);
         messagesCard = findViewById(R.id.messages_card);
@@ -39,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
         contactsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ContactsActivity.class);
+                Intent intent = new Intent(HomeActivity.this, ContactsActivity.class);
                 startActivity(intent);
             }
         });
@@ -47,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
         messagesCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), MessagingActivity.class);
+                Intent intent = new Intent(HomeActivity.this, MessagesActivity.class);
                 startActivity(intent);
             }
         });
@@ -55,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         settingsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), SettingsActivity.class);
+                Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
         });
@@ -63,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         registerDoctorCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), DoctorRegistrationActivity.class);
+                Intent intent = new Intent(HomeActivity.this, DoctorRegistrationActivity.class);
                 startActivity(intent);
             }
         });
@@ -71,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
         appointmentsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), AppointmentsActivity.class);
+                Intent intent = new Intent(HomeActivity.this, AppointmentsActivity.class);
                 startActivity(intent);
             }
         });

@@ -44,10 +44,16 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+         
         </activity>
-        <activity android:name=".MessagesActivity"></activity>
-        <activity android:name=".ChatsActivity"></activity>
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".MapsActivity"></activity>
+        <activity android:name=".MessagesActivity">
+        </activity>
+        <activity android:name=".ChatsActivity">
+        </activity>
+        <activity android:name=".SettingsActivity">
+        </activity>
+
         <activity android:name=".SplashActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -55,9 +61,13 @@
         </intent-filter>
         </activity>
         <activity android:name=".HomeActivity">
+           
         </activity>
-        <activity android:name=".AppointmentsActivity"></activity>
-        <activity android:name=".DoctorRegistrationActivity"></activity>
+        <activity android:name=".ContactsActivity"></activity>
+        <activity android:name=".AppointmentsActivity">
+        </activity>
+        <activity android:name=".DoctorRegistrationActivity">
+       </activity>
     </application>
 
 </manifest>

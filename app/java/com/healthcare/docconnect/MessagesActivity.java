@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.graphics.Color;
-import com.google.firebase.FirebaseApp;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,17 +30,41 @@ public class MessagesActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
-        FirebaseApp.initializeApp(this);
+
         //Initializing views
         backArrowImage = findViewById(R.id.back_arrow);
         recView = findViewById(R.id.recyclerView);
+        messages = new ArrayList<>();
+        messages.add("Louis Otieno");
+        messages.add("Jerry Okoth");
+        messages.add("Enis Okoth");
+        messages.add("Felix Otieno");
+        messages.add("Anania Octavis");
+        messages.add("Peter Thiel");
+        messages.add("Louis Escobar");
+        messages.add("Justus Kim");
+        messages.add("Justin Justo");
+        messages.add("Louis Otieno");
+        messages.add("Jerry Okoth");
+        messages.add("Enis Okoth");
+        messages.add("Louis Otieno");
+        messages.add("Jerry Okoth");
+        messages.add("Enis Okoth");
+        messages.add("Louis Otieno");
+        messages.add("Jerry Okoth");
+        messages.add("Enis Okoth");
+        messages.add("Louis Otieno");
+        messages.add("Jerry Okoth");
+        messages.add("Enis Okoth");
+        messages.add("Louis Otieno");
+        messages.add("Jerry Okoth");
+        messages.add("Enis Okoth");
+        messages.add("Louis Otieno");
+        messages.add("Jerry Okoth");
+        messages.add("Enis Okoth");
         
         messageAdapter = new MyAdapter(MessagesActivity.this, messages);
-        messages = new ArrayList<>();
 
-        messages.add("Hello");
-        messages.add("How are you?");
-        messages.add("I'm fine, thank you!");
       
 
 
@@ -65,7 +88,7 @@ public class MessagesActivity extends AppCompatActivity{
     private List<String> messages;
     private Context context;
 
-    public MyAdapter(Context context, List<String> dataList) {
+    public MyAdapter(Context context, List<String> messages) {
         this.context = context;
         this.messages = messages;
     }
