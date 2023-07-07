@@ -28,9 +28,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import android.util.Log;
 
 import com.karumi.dexter.Dexter;
@@ -53,7 +50,6 @@ public class MessagingActivity extends AppCompatActivity implements View.OnClick
   private EditText messageInput;
   private MyAdapter messageAdapter;
   private List<String> messages;
-  private StorageReference storageReference;
   public static final int RC_PHOTO_PICKER = 1001;
 
   ParseUser user;
@@ -80,7 +76,6 @@ public class MessagingActivity extends AppCompatActivity implements View.OnClick
 
     recView.setLayoutManager(new LinearLayoutManager(this));
     recView.setAdapter(messageAdapter);
-
     sendMessageIcon.setOnClickListener(new View.OnClickListener() {
       // Get the user ID
       String userId = getCurrentUserId();
@@ -104,7 +99,6 @@ public class MessagingActivity extends AppCompatActivity implements View.OnClick
         requestExternalStorage();
       }
     });
-
     // Functionalizing views by adding click listeners
     backArrowImage.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -205,3 +199,4 @@ public class MessagingActivity extends AppCompatActivity implements View.OnClick
     }
   }
 }
+
