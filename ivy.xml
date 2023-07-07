@@ -10,27 +10,6 @@
      <dependency org="com.google.android.material" name="material" rev="1.2.0">
         <artifact name="material" type="aar" />
      </dependency>
-     <dependency org="com.google.firebase" name="firebase-storage" rev="20.2.1">
-          <artifact name="firebase-storage" type="aar" /> 
-     </dependency>
-      <dependency org="com.google.firebase" name="firebase-messaging" rev="23.1.2">
-          <artifact name="firebase-messaging" type="aar" />  
-      </dependency>
-      <dependency org="com.google.firebase" name="firebase-database" rev="20.2.2">
-          <artifact name="firebase-database" type="aar"/>
-      </dependency>
-      <dependency org="com.google.firebase" name="firebase-auth" rev="22.0.0">
-          <artifact name="firebase-auth" type="aar"/>
-      </dependency>
-      <dependency org="com.google.firebase" name="firebase-core" rev="21.1.1">
-         <artifact name="firebase-core" type="aar"/>
-      </dependency>
-      <dependency org="com.google.firebase" name="firebase-config" rev="21.4.0">
-         <artifact name="firebase-config" type="aar"/>
-      </dependency>
-      <dependency org="com.karumi" name="dexter" rev="6.2.3">
-          <artifact name="dexter" type="aar"/>
-      </dependency>
       <dependency org="com.google.android.gms" name="play-services-maps" rev="18.1.0">
           <artifact name="play-services-maps" type="aar" />
       </dependency>
@@ -41,6 +20,11 @@
           <artifact name="Parse-SDK-Android" type="jar" />
           <exclude org="com.github.parse-community.Parse-SDK-Android" module="facebook" />
           <exclude org="com.github.parse-community.Parse-SDK-Android" module="twitter" />
+          <exclude org="com.github.parse-community.Parse-SDK-Android" module="fcm" />
+          <exclude org="com.github.parse-community.Parse-SDK-Android" module="ktx" />
+          <exclude org="com.github.parse-community.Parse-SDK-Android" module="coroutines" />
+          <exclude org="com.github.parse-community.Parse-SDK-Android" module="rxjava" />
+          <exclude org="com.github.parse-community.Parse-SDK-Android" module="google" />
         </dependency>
   </dependencies>
 </ivy-module>

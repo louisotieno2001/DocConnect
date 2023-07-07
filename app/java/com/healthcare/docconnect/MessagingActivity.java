@@ -30,14 +30,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import android.util.Log;
 
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.DexterError;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.PermissionRequestErrorListener;
-import com.karumi.dexter.listener.single.PermissionListener;
 
 import com.parse.ParseUser;
 
@@ -151,7 +143,7 @@ public class MessagingActivity extends AppCompatActivity implements View.OnClick
   }
 
   private void requestExternalStorage() {
-    Dexter.withActivity(this)
+   /* Dexter.withActivity(this)
         .withPermission(
             Manifest.permission.READ_EXTERNAL_STORAGE)
         .withListener(new PermissionListener() {
@@ -186,6 +178,7 @@ public class MessagingActivity extends AppCompatActivity implements View.OnClick
         })
         .onSameThread()
         .check();
+      */
   }
 
   @Override
