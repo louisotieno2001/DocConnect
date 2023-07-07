@@ -6,5 +6,7 @@
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
-    </style>
+     </style>
+     <style name="AppNoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
+     </style>
 </resources>

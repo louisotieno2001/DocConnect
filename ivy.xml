@@ -31,17 +31,16 @@
       <dependency org="com.karumi" name="dexter" rev="6.2.3">
           <artifact name="dexter" type="aar"/>
       </dependency>
-      <dependency org="com.github.bumptech.glide" name="glide" rev="4.12.0">
-          <artifact name="glide" type="jar"/>
-      </dependency>
-      <dependency org="com.android.volley" name="volley" rev="1.2.1" >
-          <artifact name="volley" type="aar"/>
-      </dependency>
       <dependency org="com.google.android.gms" name="play-services-maps" rev="18.1.0">
           <artifact name="play-services-maps" type="aar" />
       </dependency>
       <dependency org="com.google.android.gms" name="play-services-location" rev="21.0.1">
           <artifact name="play-services-location" type="aar" />
-      </dependency>
+        </dependency>
+        <dependency org="com.github.parse-community" name="Parse-SDK-Android" rev="4.2.0">
+          <artifact name="Parse-SDK-Android" type="jar" />
+          <exclude org="com.github.parse-community.Parse-SDK-Android" module="facebook" />
+          <exclude org="com.github.parse-community.Parse-SDK-Android" module="twitter" />
+        </dependency>
   </dependencies>
 </ivy-module>

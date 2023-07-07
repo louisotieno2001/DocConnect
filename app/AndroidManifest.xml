@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:node="remove"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -20,6 +20,8 @@
         android:label="@string/my_app_name"
         android:supportsRtl="true"
         android:theme="@style/AppBaseTheme"
+        android:name=".App"
+        android:usesCleartextTraffic="true"
       >
 
     <meta-data
@@ -46,16 +48,18 @@
             android:exported="true">
         </activity>
         <activity android:name=".MessagesActivity"></activity>
+        <activity android:name=".MessagingActivity"></activity>
         <activity android:name=".ChatsActivity"></activity>
         <activity android:name=".SettingsActivity"></activity>
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity" android:noHistory="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity">
+        <activity android:name=".HomeActivity" android:theme="@style/AppNoActionBar">
         </activity>
+        <activity android:name=".AuthActivity"></activity>
         <activity android:name=".AppointmentsActivity"></activity>
         <activity android:name=".DoctorRegistrationActivity"></activity>
     </application>
