@@ -25,17 +25,31 @@ public class SplashActivity extends AppCompatActivity  {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_splash);
 
-    ParseUser user = ParseUser.getCurrentUser();
-    if (user == null){
-      // Login screen 
-       Intent intent = new Intent(this, AuthActivity.class);
-       startActivity(intent);
-    }else{
-       Toast.makeText(this, "Welcome back "+user.getUsername(), Toast.LENGTH_LONG).show();
+    // Delay navigation to the next activity
+    new Handler().postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        // Start the next activity after the splash duration
+        navigateToNextActivity();
+      }
+    }, SPLASH_DURATION);
+  }
 
-       Intent intent = new Intent(this, HomeActivity.class);
-       startActivity(intent);
+  private void navigateToNextActivity() {
+    // Determine the next activity based on your logic
+    // For example, if the user is already logged in, navigate to HomeActivity
+    // If the user needs to log in, navigate to AuthActivity
+
+    ParseUser user = ParseUser.getCurrentUser();
+    if (user == null) {
+      Intent intent = new Intent(this, AuthActivity.class);
+      startActivity(intent);
+    } else {
+      Intent intent = new Intent(this, HomeActivity.class);
+      startActivity(intent);
     }
-    
+
+    // Close the splash activity
+    finish();
   }
 }

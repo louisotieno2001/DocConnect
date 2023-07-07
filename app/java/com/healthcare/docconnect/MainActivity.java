@@ -8,9 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.healthcare.docconnect.RegistrationCallback;
-
-public class MainActivity extends AppCompatActivity implements RegistrationCallback {
+public class MainActivity extends AppCompatActivity {
   // Declaring views
   EditText phoneEdit;
   EditText localityEdit;
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements RegistrationCallb
     return null;
   }
 
-  @Override
+  //@Override
   public void onRegistrationSuccess(String userId) {
     // Transition to the HomeActivity
     Intent intent = new Intent(MainActivity.this, HomeActivity.class);

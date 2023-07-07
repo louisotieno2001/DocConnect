@@ -15,6 +15,9 @@
          android:elevation="8dp"
          android:padding="40px"
          app:cardBackgroundColor="#E3F2C1">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
           android:id="@+id/signup_layout"
@@ -105,6 +108,7 @@
               android:id="@+id/btnSignUp"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
+              android:background="@null"
               android:text="Sign Up"/>
 
            <Button 
@@ -114,7 +118,7 @@
               android:background="@null"
               android:text="Login"/>
         </LinearLayout>
-
+   </ScrollView>
         <LinearLayout
           android:id="@+id/signin_layout"
           android:layout_width="match_parent"
@@ -153,6 +157,7 @@
               android:id="@+id/btnSignIn"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
+              android:background="@null"
               android:text="Login"/>
 
            <Button 
@@ -162,5 +167,7 @@
               android:background="@null"
               android:text="Create Account"/>
         </LinearLayout>
+    
+
 </androidx.cardview.widget.CardView>
 </LinearLayout>

@@ -34,7 +34,7 @@ public class SettingsActivity extends AppCompatActivity{
    EditText phoneNumberEdit;
    EditText localityEdit;
    TextView  saveSettingText;
-   RecyclerView recView;
+   
    private static final int REQUEST_CODE_IMAGE = 1;
    private static final int REQUEST_CODE_PERMISSION = 2;
   
@@ -49,14 +49,9 @@ public class SettingsActivity extends AppCompatActivity{
         phoneNumberEdit = findViewById(R.id.phone_edit);
         localityEdit = findViewById(R.id.locality_edit);
         saveSettingText = findViewById(R.id.save_text);
-        recView = findViewById(R.id.recyclerView);
+      
 
-        List<String> items = new ArrayList<>(); // Add your data here
-        MyAdapter adapter = new MyAdapter(this, items);
-        
-        recView.setLayoutManager(new LinearLayoutManager(this));
-        recView.setAdapter(adapter);
-   
+       
         //click listeners and intent setting for back arrow
         backArrowImage.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -77,64 +72,7 @@ public class SettingsActivity extends AppCompatActivity{
     
     }
 
-    class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private List<String> items;
-    private Context context;
-
-    public MyAdapter(Context context, List<String> items) {
-        this.context = context;
-        this.items = items;
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.id.profile_pic, parent, false);
-        return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        String item = items.get(position);
-        holder.profileView.setBackgroundResource(R.drawable.ic_profile);
-        holder.nameText.setText(item);
-        holder.nameEdit.setText(item);
-        holder.phoneText.setText(item);
-        holder.phoneEdit.setText(item);
-        holder.localityText.setText(item);
-        holder.localityEdit.setText(item);
-        holder.saveText.setText(item);
-    }
-
-    @Override
-    public int getItemCount() {
-        return items.size();
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView profileView;
-        public TextView nameText;
-        public EditText nameEdit;
-        public TextView phoneText;
-        public EditText phoneEdit;
-        public TextView localityText;
-        public EditText localityEdit;
-        public TextView saveText;
-
-        public ViewHolder(View v) {
-            super(v);
-            profileView   = v.findViewById(R.id.profile_pic);
-            nameText      = v.findViewById(R.id.name_text);
-            nameEdit      = v.findViewById(R.id.name_edit);
-            phoneText     = v.findViewById(R.id.number_text);
-            phoneEdit     = v.findViewById(R.id.phone_edit);
-            localityText  = v.findViewById(R.id.locality_text);
-            localityEdit  = v.findViewById(R.id.locality_edit);
-            saveText      = v.findViewById(R.id.save_text);
-        }
-
-    }
- 
-}
+  
 
 }
 
