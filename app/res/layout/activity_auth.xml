@@ -104,19 +104,42 @@
              android:inputType="textPassword"
              android:hint="Confirm Password"/>
 
-           <Button 
-              android:id="@+id/btnSignUp"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:background="@null"
-              android:text="Sign Up"/>
+           <TextView
+             android:id="@+id/signup_errors"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="20px" />
+          <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_margin="20px">
+             
+              <Button 
+                  android:id="@+id/btnSignUp"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:background="@null"
+                  android:layout_centerInParent="true"
+                  android:text="Sign Up"
+                />
+              <ProgressBar
+                 android:id="@+id/signup_progress"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:indeterminate="true"
+                 android:layout_toLeftOf="@id/btnSignUp"
+                 android:visibility="invisible"
+                 style="android:style/Widget.ProgressBar.Small"/>
+           
 
+           </RelativeLayout>
            <Button 
               android:id="@+id/btnOrSignIn"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:background="@null"
-              android:text="Login"/>
+              android:text="Login"
+              android:textSize="10sp"/>
         </LinearLayout>
    </ScrollView>
         <LinearLayout
@@ -152,20 +175,41 @@
              android:hint="Password" 
              android:inputType="textPassword"/>
 
+           <TextView
+             android:id="@+id/signin_errors"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_margin="20px" />
 
-           <Button 
-              android:id="@+id/btnSignIn"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:background="@null"
-              android:text="Login"/>
-
+           <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_margin="20px">
+              <Button 
+                 android:id="@+id/btnSignIn"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:background="@null"
+                 android:layout_centerInParent="true"
+                 android:text="Login" />
+              <ProgressBar
+                 android:id="@+id/signin_progress"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_toLeftOf="@id/btnSignIn"
+                 android:layout_alignParentLeft="true"
+                 android:indeterminate="true"
+                 android:visibility="invisible"
+                 style="android:style/Widget.ProgressBar.Small"/>
+           </RelativeLayout>
            <Button 
               android:id="@+id/btnOrSignUp"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:background="@null"
-              android:text="Create Account"/>
+              android:text="Create Account"
+              android:textSize="10sp"
+             />
         </LinearLayout>
     
 
