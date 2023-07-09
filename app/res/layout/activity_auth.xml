@@ -104,15 +104,6 @@
              android:inputType="textPassword"
              android:hint="Confirm Password"/>
 
-             <EditText
-             android:id="@+id/signup_locality"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:textColor="@color/green"
-             android:textColorHint="@color/green"
-             android:layout_margin="10px"
-             android:hint="Enter current location"/>
-
            <TextView
              android:id="@+id/signup_errors"
              android:layout_width="wrap_content"

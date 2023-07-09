@@ -34,14 +34,7 @@
     android:layout_margin="4dp"
     android:layout_height="284dp"
     android:elevation="8dp">
-  
-  <LinearLayout
-  android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" 
-  >
 
-  
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -50,17 +43,6 @@
         android:textSize="25dp"
         android:gravity="center"
         />
-
-        <TextView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:text="You should probable drink 8 glasses of water in a day to ba healthy.You should probable drink 8 glasses of water in a day to ba healthy.You should probable drink 8 glasses of water in a day to ba healthy.You should probable drink 8 glasses of water in a day to ba healthy.You should probable drink 8 glasses of water in a day to ba healthy.You should probable drink 8 glasses of water in a day to ba healthy.You should probable drink 8 glasses of water in a day to ba healthy"
-        android:textStyle="bold"
-        android:gravity="center"
-        />
-        
-        </LinearLayout>
-        
 
 
 </androidx.cardview.widget.CardView>

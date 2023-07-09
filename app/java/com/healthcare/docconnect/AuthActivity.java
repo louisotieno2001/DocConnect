@@ -34,7 +34,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
   EditText signupPhone;
   EditText signupPassword;
   EditText signupConfirmPassword;
-  EditText signupLocality;
 
   // signin 
   EditText signinUsername;
@@ -73,7 +72,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     signupEmail = (EditText) findViewById(R.id.signup_email);
     signupPassword = (EditText) findViewById(R.id.signup_password);
     signupConfirmPassword = (EditText) findViewById(R.id.signup_confirm_password);
-    signupLocality = (EditText) findViewById(R.id.signup_locality);
 
     signinUsername = (EditText) findViewById(R.id.signin_username);
     signinPassword = (EditText) findViewById(R.id.signin_password);
@@ -175,7 +173,6 @@ public class AuthActivity extends AppCompatActivity implements View.OnClickListe
     String password = signupPassword.getText().toString().trim();
     String confirmPassword = signupConfirmPassword.getText().toString().trim();
     String phoneNumber = signupPhone.getText().toString().trim();
-    String locality = signupLocality.getText().toString().trim();
 
     if(username == ""){
       signupErrors.setText("Username cannot be null");
