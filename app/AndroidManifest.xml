@@ -22,6 +22,7 @@
         android:theme="@style/AppBaseTheme"
         android:name=".App"
         android:usesCleartextTraffic="true"
+        tools:layout="@bool/debug_layout_bounds"
       >
 
     <meta-data

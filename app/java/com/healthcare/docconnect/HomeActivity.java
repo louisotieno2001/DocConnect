@@ -39,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
       public void onClick(View v) {
         Intent intent = new Intent(v.getContext(), ContactsActivity.class);
         startActivity(intent);
+        finish();
       }
     });
 
@@ -47,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
       public void onClick(View v) {
         Intent intent = new Intent(v.getContext(), MessagesActivity.class);
         startActivity(intent);
+        finish();
       }
     });
 
@@ -55,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
       public void onClick(View v) {
         Intent intent = new Intent(v.getContext(), SettingsActivity.class);
         startActivity(intent);
+        finish();
       }
     });
 
@@ -63,6 +66,7 @@ public class HomeActivity extends AppCompatActivity {
       public void onClick(View v) {
         Intent intent = new Intent(v.getContext(), DoctorRegistrationActivity.class);
         startActivity(intent);
+        finish();
       }
     });
 
@@ -71,6 +75,7 @@ public class HomeActivity extends AppCompatActivity {
       public void onClick(View v) {
         Intent intent = new Intent(v.getContext(), AppointmentsActivity.class);
         startActivity(intent);
+        finish();
       }
     });
   }

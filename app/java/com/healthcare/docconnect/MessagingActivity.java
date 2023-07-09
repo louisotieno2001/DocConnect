@@ -59,14 +59,14 @@ public class MessagingActivity extends AppCompatActivity implements View.OnClick
 
     user = ParseUser.getCurrentUser();
 
-    messageAdapter = new MyAdapter(MessagingActivity.this, messages);
     messages = new ArrayList<>();
+    messages.add("Hello, Still up for our appointment??");
+   
+    messageAdapter = new MyAdapter(MessagingActivity.this, messages);
 
-    messages.add("Hello");
-    messages.add("How are you?");
-    messages.add("I'm fine, thank you!");
 
-    recView.setLayoutManager(new LinearLayoutManager(this));
+    LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+    recView.setLayoutManager(layoutManager);
     recView.setAdapter(messageAdapter);
     sendMessageIcon.setOnClickListener(new View.OnClickListener() {
       // Get the user ID
@@ -83,20 +83,14 @@ public class MessagingActivity extends AppCompatActivity implements View.OnClick
         }
       }
     });
-
-    // ImagePickerButton shows an image picker to upload a image for a message
-    attachIcon.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        requestExternalStorage();
-      }
-    });
+    
     // Functionalizing views by adding click listeners
     backArrowImage.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         Intent intent = new Intent(v.getContext(), MessagesActivity.class);
         startActivity(intent);
+        finish();
       }
     });
 
@@ -113,7 +107,7 @@ public class MessagingActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-      View view = LayoutInflater.from(context).inflate(R.layout.activity_chats, parent, false);
+      View view = LayoutInflater.from(context).inflate(R.layout.message_item, parent, false);
       return new ViewHolder(view);
     }
 
@@ -133,52 +127,13 @@ public class MessagingActivity extends AppCompatActivity implements View.OnClick
 
       public ViewHolder(View itemView) {
         super(itemView);
-        textView = itemView.findViewById(R.id.text_message_view);
+        textView = itemView.findViewById(R.id.messages_view);
       }
     }
   }
 
   private String getCurrentUserId() {
     return null;
-  }
-
-  private void requestExternalStorage() {
-   /* Dexter.withActivity(this)
-        .withPermission(
-            Manifest.permission.READ_EXTERNAL_STORAGE)
-        .withListener(new PermissionListener() {
-          @Override
-          public void onPermissionGranted(PermissionGrantedResponse response) {
-            Intent inte = new Intent(Intent.ACTION_GET_CONTENT);
-            inte.setType("image/jpeg");
-            inte.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-            startActivityForResult(Intent.createChooser(inte, "Complete Action Using"), RC_PHOTO_PICKER);
-
-          }
-
-          @Override
-          public void onPermissionDenied(PermissionDeniedResponse response) {
-            // check for permanent denial of any permission
-            if (response.isPermanentlyDenied()) {
-              // show alert dialog navigating to Settings
-              Toast.makeText(MessagingActivity.this, "Permission denied", Toast.LENGTH_SHORT).show();
-            }
-          }
-
-          @Override
-          public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-            token.continuePermissionRequest();
-          }
-        })
-        .withErrorListener(new PermissionRequestErrorListener() {
-          @Override
-          public void onError(DexterError error) {
-            Log.e("Dexter", "There was an error: " + error.toString());
-          }
-        })
-        .onSameThread()
-        .check();
-      */
   }
 
   @Override
@@ -192,4 +147,3 @@ public class MessagingActivity extends AppCompatActivity implements View.OnClick
     }
   }
 }
-

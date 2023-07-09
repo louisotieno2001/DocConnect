@@ -35,32 +35,6 @@ public class MessagesActivity extends AppCompatActivity{
         backArrowImage = findViewById(R.id.back_arrow);
         recView = findViewById(R.id.recyclerView);
         messages = new ArrayList<>();
-        messages.add("Louis Otieno");
-        messages.add("Jerry Okoth");
-        messages.add("Enis Okoth");
-        messages.add("Felix Otieno");
-        messages.add("Anania Octavis");
-        messages.add("Peter Thiel");
-        messages.add("Louis Escobar");
-        messages.add("Justus Kim");
-        messages.add("Justin Justo");
-        messages.add("Louis Otieno");
-        messages.add("Jerry Okoth");
-        messages.add("Enis Okoth");
-        messages.add("Louis Otieno");
-        messages.add("Jerry Okoth");
-        messages.add("Enis Okoth");
-        messages.add("Louis Otieno");
-        messages.add("Jerry Okoth");
-        messages.add("Enis Okoth");
-        messages.add("Louis Otieno");
-        messages.add("Jerry Okoth");
-        messages.add("Enis Okoth");
-        messages.add("Louis Otieno");
-        messages.add("Jerry Okoth");
-        messages.add("Enis Okoth");
-        messages.add("Louis Otieno");
-        messages.add("Jerry Okoth");
         messages.add("Enis Okoth");
         
         messageAdapter = new MyAdapter(MessagesActivity.this, messages);
@@ -71,13 +45,15 @@ public class MessagesActivity extends AppCompatActivity{
         recView.setLayoutManager(new LinearLayoutManager(this));
         recView.setAdapter(messageAdapter);
 
-
+       
         //Clicklisteners
+       
         backArrowImage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Intent intent = new Intent(v.getContext(), HomeActivity.class);
                 startActivity(intent);
+                finish();
             }
 
         });

@@ -5,4 +5,5 @@
     <string name="speciality">e.g nurse, dentist ...</string>
     <string name="institution_name">Institution name</string>
     <string name="next_step">Next</string>
+    <string name="mapbox_access_token">pk.eyJ1Ijoib2NoaWVuZzIwMDEiLCJhIjoiY2xqdTl4cDVyMTA1ejNybjBjMXl0YTZuZSJ9.TyAjGBXcP2S5fihmBlI5Ng</string>
 </resources>
